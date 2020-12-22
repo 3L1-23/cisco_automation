@@ -1,0 +1,3 @@
+single_quotes = " ' ' " 
+error_msg = "Error, need help? \npython3 cisco_cmd.py -h"
+help_me = 'Syntax: \n-o NOT required \n ./cisco_cmd.py -c <built-in command> [-d <custom command>] -o <option> \n ./cisco_cmd.py -b (List built-in commands) \n ./cisco_cmd.py -m (Run multiple commands, see below) \n\nExamples: \n ./cisco_cmd.py -c shmactable -o "in abcd" \n ./cisco_cmd.py -c shrun \n ./cisco_cmd.py -c shrun -o "begin secret" \n \n Write to a specific file\n./cisco_cmd -c shrun > "file to write to.txt" \n\n Custom command \n ./cisco_cmd.py -d "show vtp status" -o "in trunk" \n\n To run multiple commands at once edit the multiple_commands file with 1 command per line then \n ./cisco_cmd.py -m \n\n(" " or %s REQUIRED when using spaces at command line)' % single_quotes

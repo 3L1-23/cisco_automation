@@ -1,0 +1,20 @@
+dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+#Reboot 
+
+#Download below and install after reboot
+https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi
+
+#Run in powershell as admin
+wsl --set-default-version 2
+
+#Go to store and install Ubuntu 20 LTS (or any other one you want)
+
+#After linux is installed & you are at the shell (Ubuntu)
+sudo apt update && sudo apt upgrade -y
+sudo apt install python3 -y
+sudo apt install python3-pip -y
+sudo apt install git -y 
+git clone https://github.com/knipknap/exscript.git
+cd exscript
+pip3 install .

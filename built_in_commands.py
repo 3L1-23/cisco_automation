@@ -1,0 +1,1 @@
+my_dict = {"shmactable": "show mac address-table dynamic", "shvlanbrief": "show vlan brief", "shinttrunk": "show interface trunk", "shrun": "show run"}
