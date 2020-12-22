@@ -15,17 +15,9 @@
     - Can send results to different file (Syntax below)
 
 #### Syntax: 
-Quotes are REQUIRED when using spaces. -o is NOT required
-###### Help
+" " or ' '  are REQUIRED when using spaces. 
+-o is NOT required
 
-> ./cisco_cmd.py -h
-
-###### List built-in commands
-
-> ./cisco_cmd.py -b # cisco_automation
-
-#### Syntax: 
-Quotes are REQUIRED when using spaces. -o is NOT required
 ###### Help
 
 > ./cisco_cmd.py -h
