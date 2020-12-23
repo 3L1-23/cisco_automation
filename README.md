@@ -15,7 +15,7 @@
     - Can send results to different file (Syntax below)
 
 #### Syntax: 
-" " or ' '  are REQUIRED when using spaces. 
+" " or ' '  are REQUIRED when using spaces
 
 -o is NOT required
 
@@ -57,3 +57,5 @@
 #### ToDo
 
 Add templates for better interactions - https://exscript.readthedocs.io/en/latest/cli_tutorial.html#the-exscript-template-language
+
+Maybe make some Classes

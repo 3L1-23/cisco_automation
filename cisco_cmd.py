@@ -17,6 +17,33 @@ def count_hosts(hosts):
          counter += 1
    return counter
 
+#Gets creds
+def get_creds():
+   username = input("Username [%s]: " % os.getlogin())
+   if len(username) == 0 :
+       username = os.getlogin()
+   password = getpass.getpass()
+   #Date for logs
+   account = Account(username, password)
+   return account
+# print("\n",date, "\n")
+
+#Used to run the -c or -d commands
+def one_command(myFile, command):
+    creds = get_creds()
+    results = open("/tmp/cisco_cmd_logs/results.txt", "a")
+    results.write(str(date) + "\n")
+    for host in myFile:
+        conn = SSH2()                       
+        conn.connect(host)
+        conn.login(creds)
+        conn.execute('terminal length 0')           
+        conn.execute(command)
+        # print out connection response
+        results.write(host + "\n" + conn.response + "\n")
+        print(host)
+        print(conn.response + "\n")
+
 ###
 #Create list for multi command file [-m]
 def get_exscript_hosts(myFile):
@@ -33,6 +60,7 @@ def multcmd_cmds():
       final_multcmds +=  i + "\n"
    return final_multcmds
 ###
+
 #command line arguements - gets the -c -o, etc options
 def main(argv):
    command = ''
@@ -58,46 +86,21 @@ def main(argv):
       elif opt in ("-o"):
          option = " | " + arg
       elif opt in ("-m"):
-         print("Running commands from the file multiple_commands \n")
+         print("Running commands from the file - multiple_commands \n")
          print("COMMANDS: %s" % multcmd_cmds())
          print("\nNUMBER OF HOSTS YOU ARE TARGETING: ",count_hosts(myFile))
-         print("\n",date, "\n")
-         final = "exscript multiple_commands " + get_exscript_hosts(myFile)
+         print("\nDevice Responses = /tmp/cisco_cmd_logs/")
+         final = "exscript -l /tmp/cisco_cmd_logs multiple_commands " + get_exscript_hosts(myFile)
          os.system(final)
          sys.exit()
       else:
          assert False, "unhandled option"
       final_cmd = command + option
-      # print(final_cmd)
    print("YOU ARE ABOUT TO RUN THE COMMAND: ",final_cmd)
    print("\nNUMBER OF HOSTS YOU ARE TARGETING: ",count_hosts(myFile))
    print("\nCANCEL NOW IF THIS IS THE WRONG COMMAND/HOST NUMBER \n")
-   return final_cmd
+   print("Responses are appended to /tmp/cisco_cmd_logs/results.txt")
+   return one_command(myFile,final_cmd)
 #initializes the "main" function so it provides command line variables
 if __name__ == "__main__":
    command = main(sys.argv[1:])
-
-#Gets creds
-username = input("Username [%s]: " % os.getlogin())
-if len(username) == 0 :
-    username = os.getlogin()
-password = getpass.getpass()
-#Date for logs
-account = Account(username, password)
-print("\n",date, "\n")
-
-#Used to run the -c or -d commands
-def one_command(myFile, command):
-    for host in myFile:
-        conn = SSH2()                       
-        conn.connect(host)
-        conn.login(account)  
-        conn.execute('terminal length 0')           
-        conn.execute(command)
-        # print out connection response
-        results = open("results.txt", "a")
-        results.write(host + "\n" + conn.response + "\n")
-        print(host)
-        print(conn.response + "\n")
-
-print("Responses are appended to results.txt")
