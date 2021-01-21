@@ -6,8 +6,7 @@ from Exscript import Account
 import sys, getopt, time, datetime, getpass, importlib, os, built_in_commands, help_file
 
 date = datetime.datetime.now()
-###Print # hosts in file
-myFile = open("hosts_file.txt").read().splitlines()
+myFile = open("hosts_file.txt").read().splitlines()      #Print # hosts in file
 
 #Count hosts in the hosts_file.txt
 def count_hosts(hosts):
@@ -44,7 +43,7 @@ def one_command(myFile, command):
         print(host)
         print(conn.response + "\n")
 
-###
+
 #Create list for multi command file [-m]
 def get_exscript_hosts(myFile):
    mylst = ''
@@ -52,6 +51,7 @@ def get_exscript_hosts(myFile):
    for host in myFile:
       mylst += "ssh://" + host + " "
    return mylst
+
 #Generates the command to use with the multi command [-m]
 def multcmd_cmds():
    multi_cmds = open("multiple_commands").read().splitlines()
@@ -59,7 +59,6 @@ def multcmd_cmds():
    for i in multi_cmds:
       final_multcmds +=  i + "\n"
    return final_multcmds
-###
 
 #command line arguements - gets the -c -o, etc options
 def main(argv):
@@ -101,6 +100,7 @@ def main(argv):
    print("\nCANCEL NOW IF THIS IS THE WRONG COMMAND/HOST NUMBER \n")
    print("Responses are appended to /tmp/cisco_cmd_logs/results.txt")
    return one_command(myFile,final_cmd)
+
 #initializes the "main" function so it provides command line variables
 if __name__ == "__main__":
    command = main(sys.argv[1:])

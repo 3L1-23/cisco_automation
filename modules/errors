@@ -1,0 +1,4 @@
+terminal length 0
+sh int counters errors
+sh int counters etherchannel
+sh int counters protocol status
