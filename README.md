@@ -58,3 +58,4 @@
 
 Add templates for better interactions - https://exscript.readthedocs.io/en/latest/cli_tutorial.html#the-exscript-template-language
 Add modules
+Printing results to another file with > is not working
