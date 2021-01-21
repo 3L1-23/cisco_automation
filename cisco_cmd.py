@@ -6,7 +6,7 @@ from Exscript import Account
 import sys, getopt, time, datetime, getpass, importlib, os, built_in_commands, help_file
 
 date = datetime.datetime.now()
-myFile = open("hosts_file.txt").read().splitlines()      #Print # hosts in file
+myFile = open("hosts_file.txt").read().splitlines()            #Print # hosts in file
 
 #Count hosts in the hosts_file.txt
 def count_hosts(hosts):
@@ -18,7 +18,8 @@ def count_hosts(hosts):
 
 #Gets creds
 def get_creds():
-   username = input("Username [%s]: " % os.getlogin())
+   username = input("Username [%s]: " % os.getlogin())         #For Linux
+   # username = input("Username: ")                            #For WSL 2
    if len(username) == 0 :
        username = os.getlogin()
    password = getpass.getpass()
@@ -53,8 +54,8 @@ def get_exscript_hosts(myFile):
    return mylst
 
 #Generates the command to use with the multi command [-m]
-def multcmd_cmds():
-   multi_cmds = open("multiple_commands").read().splitlines()
+def multcmd_cmds(mod_run):
+   multi_cmds = open("modules/"+mod_run).read().splitlines()
    final_multcmds = ''
    for i in multi_cmds:
       final_multcmds +=  i + "\n"
@@ -85,11 +86,12 @@ def main(argv):
       elif opt in ("-o"):
          option = " | " + arg
       elif opt in ("-m"):
-         print("Running commands from the file - multiple_commands \n")
-         print("COMMANDS: %s" % multcmd_cmds())
+         mod_run = input("Module to Run: ")
+         print("\n""COMMANDS:\n%s" % multcmd_cmds(mod_run))
          print("\nNUMBER OF HOSTS YOU ARE TARGETING: ",count_hosts(myFile))
          print("\nDevice Responses = /tmp/cisco_cmd_logs/")
-         final = "exscript -l /tmp/cisco_cmd_logs multiple_commands " + get_exscript_hosts(myFile)
+         final = "exscript -l /tmp/cisco_cmd_logs "+"modules/"+mod_run+" "+get_exscript_hosts(myFile)
+         print("Running Commands From Module : ", mod_run+"\n")
          os.system(final)
          sys.exit()
       else:

@@ -1,0 +1,21 @@
+Sh log
+
+show environment alarm
+
+show environment status power-supply 1
+
+show environment status power-supply 2
+
+show power status power-supply 1
+
+show power status power-supply 2
+
+show environment temperature
+
+show environment connector
+
+show ip ospf nei
+
+show ip pim nei
+
+show route sum

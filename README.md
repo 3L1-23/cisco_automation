@@ -49,7 +49,7 @@
 
 #### Running multiple commands:
 
-###### Change 'multiple_commands' file to have one command per line, no other formatting required
+###### To run multiple commands and use modules, -m. You will be prompted for the module to run. These modules are located in the "modules" directory. custom_cmds file is made to change as needed.
 
 > ./cisco_cmd.py -m
 
@@ -57,5 +57,4 @@
 #### ToDo
 
 Add templates for better interactions - https://exscript.readthedocs.io/en/latest/cli_tutorial.html#the-exscript-template-language
-
-Maybe make some Classes
+Add modules

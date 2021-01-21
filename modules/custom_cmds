@@ -1,2 +1,3 @@
+terminal length 0
 show mac address-table dynamic | in abcd
 sh run | in trunk
