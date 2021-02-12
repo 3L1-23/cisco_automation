@@ -72,7 +72,7 @@ def main(argv):
    command = ''
    option = ''
    try:
-      opts, args = getopt.getopt(argv,"hi:c:d:o:bi:m:")
+      opts, args = getopt.getopt(argv,"hi:c:d:o:bi:m:li:")        #hi, bi, li - the i is required if want print to console maybe? it is required though. : is required at end
    except getopt.GetoptError:
       print(help_file.error_msg)
       sys.exit(2)
@@ -85,7 +85,7 @@ def main(argv):
       elif opt in ("-d"):
          command = arg
       elif opt in ("-o"):
-         option = " | " + arg
+         option = " " + arg
       elif opt in ("-b"):
          built_in_cmds()
          sys.exit()
@@ -96,6 +96,11 @@ def main(argv):
          final = "exscript -l /tmp/cisco_cmd_logs "+"modules/"+arg+" "+get_exscript_hosts(myFile)
          print("Running Commands From Module : ", arg+"\n")
          os.system(final)
+         sys.exit()
+      elif opt in ("-l"):
+         i=os.listdir("modules")
+         for x in i:
+            print(x)
          sys.exit()
       else:
          assert False, "unhandled option"

@@ -36,7 +36,13 @@
 > ./cisco_cmd.py -d `<custom command>` -o `<option>`
 
 #### Examples:
-> ./cisco_cmd.py -c shmactable -o "in abcd"
+> ./cisco_cmd.py -c shmactable -o "| in abcd"
+>
+> ./cisco_cmd.py -c shintstatus -o '| in Gi1/0/1'
+>
+> ./cisco_cmd.py -c shint -o Gi1/0/1
+>
+> ./cisco_cmd.py -c shint -o 'Gi1/0/1 | in CRC'
 > 
 > ./cisco_cmd.py -c shrun
 >
@@ -44,14 +50,18 @@
 >
 > ./cisco_cmd.py -d "show vtp status" -o "in trunk"
 
-###### To print results to another file beside results.txt
->./cisco_cmd.py -c shrun > "Running Config 192.168.0.1-5.txt"
 
 #### Running multiple commands:
 
-###### To run multiple commands and use modules, -m. You will be prompted for the module to run. These modules are located in the "modules" directory. custom_cmds file is made to change as needed.
+###### To run multiple commands and use modules, -m module_name. These modules are located in the "modules" directory. custom_cmds file is made to change as needed. The -l with list all the modules available to run.
 
-> ./cisco_cmd.py -m
+> ./cisco_cmd.py -m `<name of module>`
+>
+> ./cisco_cmd.py -m shmactableint
+>
+> ./cisco_cmd.py -m health
+>
+> ./cisco_cmd.py -l (Prints the available modules to run. To see contents of file/module "cat `<module name>`)
 
 
 #### ToDo

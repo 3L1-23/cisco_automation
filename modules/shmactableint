@@ -1,0 +1,5 @@
+terminal length 0
+show mac address-table dynamic int gi1/0/44
+show mac address-table dynamic int gi1/0/45
+show mac address-table dynamic int gi1/0/46
+show mac address-table dynamic int gi1/0/47
