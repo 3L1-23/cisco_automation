@@ -18,8 +18,8 @@ def count_hosts(hosts):
 
 #Gets creds
 def get_creds():
-   username = input("Username [%s]: " % os.getlogin())         #For Linux
-   # username = input("Username: ")                            #For WSL 2
+   # username = input("Username [%s]: " % os.getlogin())         #For Linux
+   username = input("Username: ")                                #For WSL 2 or without default username:
    if len(username) == 0 :
        username = os.getlogin()
    password = getpass.getpass()
@@ -53,7 +53,7 @@ def get_exscript_hosts(myFile):
       mylst += "ssh://" + host + " "
    return mylst
 
-#Generates the command to use with the multi command [-m]
+###Generates the command to use with the multi command [-m]
 def multcmd_cmds(mod_run):
    multi_cmds = open("modules/"+mod_run).read().splitlines()
    final_multcmds = ''
@@ -61,12 +61,18 @@ def multcmd_cmds(mod_run):
       final_multcmds +=  i + "\n"
    return final_multcmds
 
+###Generates the command to show built-in commands [-b]
+def built_in_cmds():
+  shorthand = built_in_commands.my_dict.keys()
+  for i in shorthand:
+     print(i + " = " + built_in_commands.my_dict.get(i))
+
 #command line arguements - gets the -c -o, etc options
 def main(argv):
    command = ''
    option = ''
    try:
-      opts, args = getopt.getopt(argv,"hi:c:o:d:b:m")
+      opts, args = getopt.getopt(argv,"hi:c:d:o:bi:m")
    except getopt.GetoptError:
       print(help_file.error_msg)
       sys.exit(2)
@@ -74,17 +80,15 @@ def main(argv):
       if opt == '-h':
          print(help_file.help_me)
          sys.exit()
-      elif opt in ("-b"):
-         shorthand = built_in_commands.my_dict.keys()
-         for i in shorthand:
-            print(i + " = " + built_in_commands.my_dict.get(i))
-         sys.exit()
       elif opt in ("-c"):
          command = str(built_in_commands.my_dict.get(arg))
       elif opt in ("-d"):
          command = arg
       elif opt in ("-o"):
          option = " | " + arg
+      elif opt in ("-b"):
+         built_in_cmds()
+         sys.exit()
       elif opt in ("-m"):
          mod_run = input("Module to Run: ")
          print("\n""COMMANDS:\n%s" % multcmd_cmds(mod_run))
