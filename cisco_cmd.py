@@ -72,7 +72,7 @@ def main(argv):
    command = ''
    option = ''
    try:
-      opts, args = getopt.getopt(argv,"hi:c:d:o:bi:m")
+      opts, args = getopt.getopt(argv,"hi:c:d:o:bi:m:")
    except getopt.GetoptError:
       print(help_file.error_msg)
       sys.exit(2)
@@ -90,12 +90,11 @@ def main(argv):
          built_in_cmds()
          sys.exit()
       elif opt in ("-m"):
-         mod_run = input("Module to Run: ")
-         print("\n""COMMANDS:\n%s" % multcmd_cmds(mod_run))
+         print("\n""COMMANDS:\n%s" % multcmd_cmds(arg))
          print("\nNUMBER OF HOSTS YOU ARE TARGETING: ",count_hosts(myFile))
          print("\nDevice Responses = /tmp/cisco_cmd_logs/")
-         final = "exscript -l /tmp/cisco_cmd_logs "+"modules/"+mod_run+" "+get_exscript_hosts(myFile)
-         print("Running Commands From Module : ", mod_run+"\n")
+         final = "exscript -l /tmp/cisco_cmd_logs "+"modules/"+arg+" "+get_exscript_hosts(myFile)
+         print("Running Commands From Module : ", arg+"\n")
          os.system(final)
          sys.exit()
       else:
