@@ -35,6 +35,14 @@
 
 > ./cisco_cmd.py -d `<custom command>` -o `<option>`
 
+###### To run modules & multiple commands. (These modules are located in the "modules" directory)
+
+> ./cisco_cmd.py -m `<module name>`
+
+###### To list the available modules
+
+> ./cisco_cmd.py -l
+
 #### Examples:
 > ./cisco_cmd.py -c shmactable -o "| in abcd"
 >
@@ -49,12 +57,7 @@
 > ./cisco_cmd.py -c shrun -o "begin secret" 
 >
 > ./cisco_cmd.py -d "show vtp status" -o "in trunk"
-
-
-#### Running multiple commands:
-
-###### To run multiple commands and use modules, -m module_name. These modules are located in the "modules" directory. custom_cmds file is made to change as needed. The -l will list all the modules available to run.
-
+>
 > ./cisco_cmd.py -m `<name of module>`
 >
 > ./cisco_cmd.py -m shmactableint
