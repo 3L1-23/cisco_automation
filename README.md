@@ -53,7 +53,7 @@
 
 #### Running multiple commands:
 
-###### To run multiple commands and use modules, -m module_name. These modules are located in the "modules" directory. custom_cmds file is made to change as needed. The -l with list all the modules available to run.
+###### To run multiple commands and use modules, -m module_name. These modules are located in the "modules" directory. custom_cmds file is made to change as needed. The -l will list all the modules available to run.
 
 > ./cisco_cmd.py -m `<name of module>`
 >
@@ -68,6 +68,6 @@
 
 Add templates for better interactions - https://exscript.readthedocs.io/en/latest/cli_tutorial.html#the-exscript-template-language
 
-Add modules
+Add modules & built-in tasks
 
-Printing results to another file with > is not working
+Printing results to another file on the fly
