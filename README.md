@@ -37,6 +37,7 @@
 
 ###### To run modules & multiple commands 
 >These modules are located in the "modules" directory. To see contents of file/module - cat `<module name>`
+
 > ./cisco_cmd.py -m `<module name>`
 
 ###### To list the available modules
