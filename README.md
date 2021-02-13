@@ -35,7 +35,8 @@
 
 > ./cisco_cmd.py -d `<custom command>` -o `<option>`
 
-###### To run modules & multiple commands. (These modules are located in the "modules" directory)
+###### To run modules & multiple commands. 
+###### These modules are located in the "modules" directory. To see contents of file/module "cat `<module name>`"
 
 > ./cisco_cmd.py -m `<module name>`
 
@@ -63,9 +64,6 @@
 > ./cisco_cmd.py -m shmactableint
 >
 > ./cisco_cmd.py -m health
->
-> ./cisco_cmd.py -l (Prints the available modules to run. To see contents of file/module "cat `<module name>`)
-
 
 #### ToDo
 
