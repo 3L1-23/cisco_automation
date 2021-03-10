@@ -1,5 +1,2 @@
 terminal length 0
-configure terminal
-file prompt quiet
-do clear counters
-file prompt alert
+clear counters
